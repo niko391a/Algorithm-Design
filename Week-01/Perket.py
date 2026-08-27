@@ -5,23 +5,32 @@ import sys
 
 
 bestAbsolute = sys.maxsize
-N = input()
+N = int(input())
+
 combinations = []
 ingredients = []
-prodSour = 0
+prodSour = 1
 sumBitter = 0
 
-# Get all ingredients into collection of tuples
-for x in range(N):
-    ingredients[x] = tuple(input.split(" "))
+# get all ingredients into collection of tuples
+for _ in range(N):
+    s, b = map(int, input().split())
+    ingredients.append((s, b))
 
-# Get all combinations
+# get all combinations
 for r in range(1, len(ingredients) +1):
     combinations.extend(itertools.combinations(ingredients, r))
 
-# Evaluate collection of combinations and find best absolute difference
+# evaluate collection of combinations and find best absolute difference
 for combination in combinations:
-    prodSour *= combination[1]
-    sumBitter += combination[1]
-    difference = prodSour - sumBitter
+    prodSour = 1
+    sumBitter = 0
+
+    for s, b in combination:
+        prodSour *= s
+        sumBitter += b
+
+    difference = abs(prodSour - sumBitter)
     if difference < bestAbsolute: bestAbsolute = difference
+
+print(bestAbsolute)

@@ -30,18 +30,18 @@ match t:
         print("".join(modString))
     case 7:
         i = numList[0]
-        prevI = 0
+        prevI = set()
 
         while True:
             if(i >= len(numList)):
                 print("Out")
                 break
-            elif(i == len(numList)-1):
+            elif(i == len(numList)-1 or i < 0):
                 print("Done")
                 break
-            elif prevI == i:
+            elif i in prevI:
                 print("Cyclic")
                 break
-            prevI = i
+            prevI.add(i)
             i = numList[i]
 

@@ -19,7 +19,7 @@ match t:
         evenSum = 0
         for n in numList:
             if n % 2 == 0:
-                evenSum += n
+                evenSum += n               
     case 6:
         modList = list
 
@@ -29,11 +29,15 @@ match t:
             print("".join(modList))
     case 7:
         i = numList[0]
-    
+        prevI = 0
+
         while True:
             if(i >= len(numList)):
                 print("Out")
             elif(i == len(numList)-1):
                 print("Done")
-            elif
+            elif prevI == i:
+                print("Cyclic")
+            prevI = i
+            i = numList[i]
 

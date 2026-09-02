@@ -12,23 +12,28 @@ match t:
         else:
             print("Smaller")
     case 3:
-        numList.sort()
-        size = len(numList)
-        midVal = numList[size // 2]
-
-        if numList.count(midVal) > size // 2: print(midVal)
-        else: print(-1)
-
+        print(numList[1])
     case 4:
-        numList.sort()
-        size = len(numList)
-        if size % 2 == 0:
-            print(numList[size // 2], numList[size // 2 - 1])
-        else:
-            print(numList[size // 2 - 1])
-
+        print(sum(numList))
     case 5:
-        filteredList = list(filter(lambda x: 100 <= x <= 999, numList))
-        filteredList.sort()
-        print(*filteredList)
+        evenSum = 0
+        for n in numList:
+            if n % 2 == 0:
+                evenSum += n
+    case 6:
+        modList = list
+
+        for n in numList:
+            modList.append(n%23)
+
+            print("".join(modList))
+    case 7:
+        i = numList[0]
+    
+        while True:
+            if(i >= len(numList)):
+                print("Out")
+            elif(i == len(numList)-1):
+                print("Done")
+            elif
 

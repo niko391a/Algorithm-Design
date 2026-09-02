@@ -1,15 +1,12 @@
 x = list(input())
-out = ""
 alternate = True
 
-for c in x:
-    if c == 'b':
+for i in range(len(x)):
+    if x[i] == 'b':
         if alternate:
-            out = out+"1"
+            x[i] = '0'
         else:
-            out = out+"0"
-    else: 
-        out = out + c
+            x[i] = '1'
+        alternate = not alternate
 
-    alternate = not alternate
-print(out)
+print("".join(x))

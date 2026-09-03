@@ -4,7 +4,8 @@ N, m = map(int, input().split())
 
 proposers = {} 
 rejectors = {}
-matches = {}
+proposer_partners = {}
+rejector_partners = {}
 
 # Proposors
 for _ in range(N // 2):
@@ -26,8 +27,8 @@ while len(unmatched) != 0:
     currentPref = proposers[currentProposer].pop(0)
 
     # if empty rejector has no partner
-    if matches[currentProposer] == []:
-        matches[currentProposer] = currentPref
+    if rejector_partners.get(currentPref) == []:
+        proposer_partners[currentProposer] = currentPref
     # if rejector already has partner
     else:
         # rejector has a Better partner

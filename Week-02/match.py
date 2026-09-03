@@ -48,8 +48,12 @@ while len(unmatched) != 0:
             proposer_partners[currentProposer] = currentPref
             rejector_partners[currentPref] = currentProposer
             unmatched.add(currentPartner)
-            
-        # rejector has a Better partner do nothing
+        # rejector has a Better partner return to unmatch
+        else:
+            unmatched.add(currentProposer)
+
+for proposer, partner in proposer_partners.items():
+    print(proposer, partner)
 
 
 

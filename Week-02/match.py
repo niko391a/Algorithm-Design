@@ -25,7 +25,16 @@ while len(unmatched) != 0:
     currentProposer = unmatched.pop()
     currentPref = proposers[currentProposer].pop(0)
 
-    
+    # if empty no partner
+    if matches[currentProposer] == []:
+        matches[currentProposer] = currentPref
+    # if has partner
+    else:
+        # Better partner
+        matches[currentProposer] = currentPref
+        
+        # Worse partner
+
 
 
 

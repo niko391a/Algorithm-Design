@@ -1,4 +1,4 @@
-# Thank you to RALC for suggesting a set of remaining suitors(proposers)
+# Thank you to RALC for suggesting a set of remaining suitors(proposers) as well as using dictionaries for tracking current matches
 
 N, m = map(int, input().split())
 
@@ -32,13 +32,24 @@ while len(unmatched) != 0:
         rejector_partners[currentPref] = currentProposer
     # if rejector already has partner
     else:
-        # rejector has a Better partner
-        if:
-            matches[currentProposer] = currentPref
-            unmatched.add(currentProposer)
+        # Compare partner to candidate
+        currentPartner = rejector_partners[currentPref]
+        new_is_preferred = False
+
+        for candidate in rejectors[currentPref]:
+            if candidate == currentProposer:
+                new_is_preferred = True
+                break
+            if candidate == currentPartner:
+                break
+
         # rejector has a worse partner
-        else:
-            partner = matches[currentProposer]
+        if new_is_preferred:
+            proposer_partners[currentProposer] = currentPref
+            rejector_partners[currentPref] = currentProposer
+            unmatched.add(currentPartner)
+            
+        # rejector has a Better partner do nothing
 
 
 

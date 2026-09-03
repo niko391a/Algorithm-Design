@@ -27,18 +27,18 @@ while len(unmatched) != 0:
     currentPref = proposers[currentProposer].pop(0)
 
     # if empty rejector has no partner
-    if rejector_partners.get(currentPref) == []:
+    if rejector_partners.get(currentPref) == None:
         proposer_partners[currentProposer] = currentPref
         rejector_partners[currentPref] = currentProposer
     # if rejector already has partner
     else:
         # rejector has a Better partner
-        if 
-        matches[currentProposer] = currentPref
-        unmatched.add(currentProposer)
-
+        if:
+            matches[currentProposer] = currentPref
+            unmatched.add(currentProposer)
         # rejector has a worse partner
-        partner = matches[currentProposer]
+        else:
+            partner = matches[currentProposer]
 
 
 

@@ -17,9 +17,13 @@ def ClosestPair(remainingPoints):
         # Split and recurse
         pointsSplit = len(remainingPoints)//2
         # Left half
-        ClosestPair(remainingPoints[0:pointsSplit])
+        leftCandidate = ClosestPair(remainingPoints[0:pointsSplit])
         # Right half
-        ClosestPair(remainingPoints[pointsSplit:len(remainingPoints)])
+        rightCandidate = ClosestPair(remainingPoints[pointsSplit:len(remainingPoints)])
+
+        leftLength = EuclideanDistance(leftCandidate[0], leftCandidate[1])
+        rightLength = EuclideanDistance(rightCandidate[0], rightCandidate[1])
+        bestCandidate = leftCandidate if leftLength < rightLength else rightCandidate
 
         # Combine
     else:
@@ -28,7 +32,7 @@ def ClosestPair(remainingPoints):
         branchCandidates = []
         currentP1 = []
         currentP2 = []
-        currentDistance = 0;
+        currentDistance = 0
 
         for p1 in range(len(remainingPoints)):
             currentP1 = remainingPoints[p1]
@@ -46,4 +50,4 @@ def EuclideanDistance(p1, p2):
 
 
 
-print(ClosestPair([], points))
+print(ClosestPair(points))

@@ -17,15 +17,26 @@ def ClosestPair(remainingPoints):
         # Split and recurse
         pointsSplit = len(remainingPoints)//2
         # Left half
-        leftCandidate = ClosestPair(remainingPoints[0:pointsSplit])
+        leftCandidate = ClosestPair(remainingPoints[pointsSplit-1])
         # Right half
-        rightCandidate = ClosestPair(remainingPoints[pointsSplit:len(remainingPoints)])
-
-        leftLength = EuclideanDistance(leftCandidate[0], leftCandidate[1])
-        rightLength = EuclideanDistance(rightCandidate[0], rightCandidate[1])
-        bestCandidate = leftCandidate if leftLength < rightLength else rightCandidate
+        rightCandidate = ClosestPair(remainingPoints[pointsSplit])
 
         # Combine
+        leftLength = math.dist(leftCandidate[0], leftCandidate[1])
+        rightLength = math.dist(rightCandidate[0], rightCandidate[1])
+
+        delta = min(leftLength, rightLength)
+        line =  remainingPoints[pointsSplit][0]
+        filteredPoints = []
+
+        for p in remainingPoints:
+            if (abs(p[0] - line)) < delta:
+                filteredPoints.append(p)
+
+        filteredPoints.sort(key=lambda x: x[1])
+
+        return leftCandidate if leftLength < rightLength else rightCandidate
+
     else:
         # Base case evaluate the 9 pairs no clean split for 3 points
         branchLength = math.inf
@@ -39,15 +50,10 @@ def ClosestPair(remainingPoints):
             for p2 in range(len(remainingPoints)):
                 if p1 != p2:
                     currentP2 = remainingPoints[p2]
-                    currentDistance = EuclideanDistance(currentP1, currentP2)
+                    currentDistance = math.dist(currentP1, currentP2)
                     if currentDistance < branchLength: 
                         branchCandidates = (currentP1, currentP2)
                         branchLength = currentDistance
         return branchCandidates
-
-def EuclideanDistance(p1, p2):
-    return math.sqrt(math.pow((p2[0]-p1[0]), 2) + math.pow((p2[1]-p1[1]), 2))
-
-
 
 print(ClosestPair(points))

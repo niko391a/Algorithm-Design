@@ -3,14 +3,17 @@
 n, m = map(int, input().split())
 
 graph = []
-dist = []
+# Size n + 1 because points are 1-indexed. since a route can begin anywhere.
+dist = [0] * (n + 1)
 
 for _ in range(m):
     edge = tuple(map(int, input().split()))
     graph.append(edge)
     # Form (from, to, weight)
 
-for _ in range(m):
+for _ in range(n - 1):
     for u, v, weight in graph:
-        if dist[u]+weight < dist[v]:
+        if dist[u]+weight > dist[v]:
             dist[v] = dist[u] + weight
+
+print(max(dist))

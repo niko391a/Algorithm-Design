@@ -3,6 +3,7 @@
 n, m = map(int, input().split())
 
 graph = []
+dist = []
 
 for _ in range(m):
     edge = tuple(map(int, input().split()))
@@ -10,6 +11,6 @@ for _ in range(m):
     # Form (from, to, weight)
 
 for _ in range(m):
-    for node in graph:
-        for u, v, weight in graph[node].items():
-            if 
+    for u, v, weight in graph:
+        dist[v] = dist[u] + weight
+        if

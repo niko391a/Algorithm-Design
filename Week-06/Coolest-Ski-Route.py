@@ -12,5 +12,5 @@ for _ in range(m):
 
 for _ in range(m):
     for u, v, weight in graph:
-        dist[v] = dist[u] + weight
-        if
+        if dist[u]+weight < dist[v]:
+            dist[v] = dist[u] + weight

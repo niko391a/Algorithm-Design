@@ -13,15 +13,14 @@ n, m, s, t = map(int, input().split())
 # v = til 
 # c = capacity 
 # f = flow
-edges = []
-
-# Collection holding a list of vertices and their outgoing edges
 adj = [[] for _ in range(n)]
 
 for _ in range(m):
     u, v, c, f = map(int, input().split())
+    if f < c:                       # forward edge exists: spare capacity c - f
+        adj[u].append((v, c - f))
+    if f > 0:                       # backward edge exists: flow that can be undone
+        adj[v].append((u, f))       # goes into v's list, pointing back to u
 
-    adj[u].append(v)
 
-    edges.append([([u].append(v)), (c-f)])
-
+# BFS to find the bottleneck

@@ -15,6 +15,7 @@ n, m, s, t = map(int, input().split())
 # f = flow
 adj = [[] for _ in range(n)]
 
+# Augment once as we are not maximizing flow
 for _ in range(m):
     u, v, c, f = map(int, input().split())
     if f < c:                       # forward edge exists: spare capacity c - f

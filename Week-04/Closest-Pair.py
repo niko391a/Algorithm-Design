@@ -1,12 +1,9 @@
 import math
-
-n = int(input())
+import sys
 
 points = []
-
-for _ in range(n):
-    point = tuple(map(float, input().split()))
-    points.append(point)
+n = int(sys.stdin.readline())
+points = [tuple(map(float, sys.stdin.readline().split())) for _ in range(n)]
 
 # Sort by x
 points.sort()
@@ -17,9 +14,9 @@ def ClosestPair(remainingPoints):
         # Split and recurse
         pointsSplit = len(remainingPoints)//2
         # Left half
-        leftCandidate = ClosestPair(remainingPoints[pointsSplit-1])
+        leftCandidate = ClosestPair(remainingPoints[:pointsSplit])
         # Right half
-        rightCandidate = ClosestPair(remainingPoints[pointsSplit])
+        rightCandidate = ClosestPair(remainingPoints[pointsSplit:])
 
         # Combine
         leftLength = math.dist(leftCandidate[0], leftCandidate[1])
@@ -35,10 +32,19 @@ def ClosestPair(remainingPoints):
 
         filteredPoints.sort(key=lambda x: x[1])
 
-        return leftCandidate if leftLength < rightLength else rightCandidate
+        best = leftCandidate if leftLength < rightLength else rightCandidate
 
+        for i in range(len(filteredPoints)):
+            for j in range(i + 1, min(i + 12, len(filteredPoints))):
+                if filteredPoints[j][1] - filteredPoints[i][1] >= delta:
+                    break
+                d = math.dist(filteredPoints[i], filteredPoints[j])
+                if d < delta:
+                    delta = d  
+                    best = (filteredPoints[i], filteredPoints[j])
+        return best
     else:
-        # Base case evaluate the 9 pairs no clean split for 3 points
+        # Base case
         branchLength = math.inf
         branchCandidates = []
         currentP1 = []
@@ -56,4 +62,6 @@ def ClosestPair(remainingPoints):
                         branchLength = currentDistance
         return branchCandidates
 
-print(ClosestPair(points))
+bestPair = ClosestPair(points)
+for p in bestPair:
+    print(*p)
